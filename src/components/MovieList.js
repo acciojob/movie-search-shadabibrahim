@@ -5,7 +5,7 @@ const MovieList = () => {
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState("Invalid movie name. Please try again.");
 
     const fetchMovies = async (query) => {
         setIsLoading(true)
@@ -39,18 +39,21 @@ const MovieList = () => {
         <div>
             <p>Search Movie</p>
             <div className="search-bar">
+            <form>
             <input type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search movie..."
             />
             <button onClick={() => fetchMovies(query)}>Search</button>
+            </form>
+          
             </div>
            
             <div>
                 {/* <pre>{JSON.stringify(movies,null,2)}</pre> */}
                 {
-                    isLoading ? <p>Loading...</p> : error ? <p>{error}</p> : (
+                    isLoading ? <p>Loading...</p> : error ? <p className="error">{error}</p> : (
                         <ul>
                             {
                                 movies.map((movie) => (

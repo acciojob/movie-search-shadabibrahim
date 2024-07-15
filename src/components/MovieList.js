@@ -5,7 +5,7 @@ const MovieList = () => {
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("Invalid movie name. Please try again.");
+    const [error, setError] = useState(null);
 
     const fetchMovies = async (query) => {
         event.preventDefault();
@@ -23,7 +23,7 @@ const MovieList = () => {
                 setQuery("")
             }
             else {
-                setError(response.data.Error)
+                setError("Invalid movie name. Please try again.")
             }
 
 

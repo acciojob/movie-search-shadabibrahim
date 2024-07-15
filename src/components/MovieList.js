@@ -8,6 +8,7 @@ const MovieList = () => {
     const [error, setError] = useState("Invalid movie name. Please try again.");
 
     const fetchMovies = async (query) => {
+        event.preventDefault();
         setIsLoading(true)
         setError(null)
         try {
@@ -39,13 +40,13 @@ const MovieList = () => {
         <div>
             <p>Search Movie</p>
             <div className="search-bar">
-            <form>
+            <form onSubmit={() => fetchMovies(query)}>
             <input type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search movie..."
             />
-            <button onClick={() => fetchMovies(query)}>Search</button>
+            <button type="submit">Search</button>
             </form>
           
             </div>
